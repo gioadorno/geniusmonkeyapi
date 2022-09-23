@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-const id = Math.random();
 
 const Form = ({ data }) => {
 
@@ -61,10 +60,8 @@ const Form = ({ data }) => {
         }
     };
 
-
-    console.log(shuffle)
   return (
-    <div className='w-screen flex h-full'>
+    <div className='w-screen flex h-full items-center justify-center'>
         <div className='flex items-center w-full h-full justify-center'>
             <form className='rounded-xl bg-white h-3/4 w-2/3 flex flex-col items-center py-5 px-8'>
                 <h1 className='text-xl font-semibold pb-12'>Form</h1>
@@ -101,55 +98,57 @@ const Form = ({ data }) => {
                 }
             </form>
         </div>
-        <div className='bg-[#ffffffd3] w-full h-full flex p-24 flex-col'>
-            <div className='flex border-b-[1px] border-black flex-col items-center'>
-                <h1 className='font-semibold text-xl py-3'>All Dealers</h1>
-                {data.map(({ name, id }) => (
-                        <p className='py-1' key={id}>
-                            {name}
+        <div className='items-center justify-center w-full h-full flex flex-col rounded-2xl'>
+            <div className='flex bg-[#ffffffd3] rounded-2xl p-24  flex-col w-3/4 h-4/5 space-y-5 overflow-y-auto'>
+                <div className='flex border-b-[1px] border-black flex-col items-center'>
+                    <h1 className='font-semibold text-xl py-3'>All Dealers</h1>
+                    {data.map(({ name, id }) => (
+                            <p className='py-1' key={id}>
+                                {name}
+                            </p>
+                        ))}
+                </div>
+                <div className='flex border-b-[1px] border-black flex-col items-center'>
+                    <h1 className='font-semibold text-xl py-3'>Dealer Chosen</h1>
+                    {dealer &&
+                        <p className='py-1'>
+                            {dealer.name}
                         </p>
-                    ))}
-            </div>
-            <div className='flex border-b-[1px] border-black flex-col items-center'>
-                <h1 className='font-semibold text-xl py-3'>Dealer Chosen</h1>
-                {dealer &&
-                    <p className='py-1'>
-                        {dealer.name}
-                    </p>
 
-                }
-            </div>
-            <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px] scrollbar-track-slate-300/20 scrollbar-thumb-[#e96d5dcb] scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thin'>
-                <h1 className='font-semibold text-xl py-3'>Deck</h1>
-                {deck &&
-                    deck?.map(({ rank, suit }) => (
-                        <div key={suit + id + rank} className='w-full h-[100px] flex space-x-3'>
-                            <p>
-                                {rank}
-                            </p>
-                            <p>
-                                {suit}
-                            </p>
-                        </div>
-                    ))
+                    }
+                </div>
+                <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px] scrollbar-track-slate-300/20 scrollbar-thumb-[#e96d5dcb] scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thin'>
+                    <h1 className='font-semibold text-xl py-3'>Deck</h1>
+                    {deck &&
+                        deck?.map(({ rank, suit }) => (
+                            <div key={suit + id + rank} className='w-full h-[100px] flex space-x-3'>
+                                <p>
+                                    {rank}
+                                </p>
+                                <p>
+                                    {suit}
+                                </p>
+                            </div>
+                        ))
 
-                }
-            </div>
-            <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px] mt-12 scrollbar-track-slate-300/20 scrollbar-thumb-[#e96d5dcb] scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thin'>
-                <h1 className='font-semibold text-xl py-3'>Shuffled Deck</h1>
-                {arrange &&
-                    arrange?.map(({ rank, suit }) => (
-                        <div key={rank + id} className='w-full h-[100px] flex space-x-3'>
-                            <p>
-                                {rank}
-                            </p>
-                            <p>
-                                {suit}
-                            </p>
-                        </div>
-                    ))
+                    }
+                </div>
+                <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px] mt-12 scrollbar-track-slate-300/20 scrollbar-thumb-[#e96d5dcb] scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thin'>
+                    <h1 className='font-semibold text-xl py-3'>Shuffled Deck</h1>
+                    {arrange &&
+                        arrange?.map(({ rank, suit }) => (
+                            <div key={rank + id} className='w-full h-[100px] flex space-x-3'>
+                                <p>
+                                    {rank}
+                                </p>
+                                <p>
+                                    {suit}
+                                </p>
+                            </div>
+                        ))
 
-                }
+                    }
+                </div>
             </div>
         </div>
     </div>
