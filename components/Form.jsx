@@ -122,7 +122,7 @@ const Form = ({ data }) => {
                 <h1 className='font-semibold text-xl py-3'>Deck</h1>
                 {deck &&
                     deck?.map(({ rank, suit }) => (
-                        <div key={rank} className='w-full h-[100px] flex space-x-3'>
+                        <div key={rank + suit} className='w-full h-[100px] flex space-x-3'>
                             <p>
                                 {rank}
                             </p>
