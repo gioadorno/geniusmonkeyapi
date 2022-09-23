@@ -6,7 +6,6 @@ const Form = ({ data }) => {
     const [ id, setId ] = useState('');
     const [dealer, setDealer] = useState('');
     const [ deck, setDeck ] = useState([]);
-    const [ shuffle, setShuffle ] = useState('');
     const [ arrange, setArrange ] = useState([])
 
     const onChange = async (e) => {
