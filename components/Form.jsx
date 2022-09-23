@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState } from 'react';
+
+const id = Math.random();
 
 const Form = ({ data }) => {
 
@@ -52,7 +54,6 @@ const Form = ({ data }) => {
                 },
                 body: JSON.stringify(deck)
               }).then(res => res.json());
-              console.log(getShuffle)
 
               setArrange(getShuffle)
         } catch (error) {
@@ -100,7 +101,7 @@ const Form = ({ data }) => {
                 }
             </form>
         </div>
-        <div className='bg-white w-full h-full flex p-24 flex-col'>
+        <div className='bg-[#ffffffd3] w-full h-full flex p-24 flex-col'>
             <div className='flex border-b-[1px] border-black flex-col items-center'>
                 <h1 className='font-semibold text-xl py-3'>All Dealers</h1>
                 {data.map(({ name, id }) => (
@@ -118,11 +119,11 @@ const Form = ({ data }) => {
 
                 }
             </div>
-            <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px]'>
+            <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px] scrollbar-track-slate-300/20 scrollbar-thumb-[#e96d5dcb] scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thin'>
                 <h1 className='font-semibold text-xl py-3'>Deck</h1>
                 {deck &&
                     deck?.map(({ rank, suit }) => (
-                        <div key={rank + suit} className='w-full h-[100px] flex space-x-3'>
+                        <div key={suit + id + rank} className='w-full h-[100px] flex space-x-3'>
                             <p>
                                 {rank}
                             </p>
@@ -134,11 +135,11 @@ const Form = ({ data }) => {
 
                 }
             </div>
-            <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px]'>
+            <div className='flex border-b-[1px] border-black flex-col items-center overflow-y-auto h-[200px] mt-12 scrollbar-track-slate-300/20 scrollbar-thumb-[#e96d5dcb] scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thin'>
                 <h1 className='font-semibold text-xl py-3'>Shuffled Deck</h1>
                 {arrange &&
                     arrange?.map(({ rank, suit }) => (
-                        <div key={rank} className='w-full h-[100px] flex space-x-3'>
+                        <div key={rank + id} className='w-full h-[100px] flex space-x-3'>
                             <p>
                                 {rank}
                             </p>
