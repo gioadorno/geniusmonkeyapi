@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const Form = ({ data }) => {
@@ -25,8 +25,9 @@ const Form = ({ data }) => {
         }
     };
 
+
+
     const onChangeCards = async (e) => {
-        if(e.target.value != '') {
             try {
                 const getDeck = await fetch(`https://dealer-5wb4b3itbq-uc.a.run.app/dealers/${id}/${e.target.value}/`, {
                     headers: {
@@ -39,8 +40,6 @@ const Form = ({ data }) => {
             } catch (error) {
                 console.log(error)
             }
-
-        }
     };
 
     const onChangeShuffle = async (e) => {
@@ -59,13 +58,18 @@ const Form = ({ data }) => {
         }
     };
 
+    useEffect(() => {
+        deck && onChangeCards();
+        arrange && onChangeShuffle();
+    }, [id])
+
   return (
     <div className='w-screen flex h-full items-center justify-center'>
         <div className='flex items-center w-full h-full justify-center'>
             <form className='rounded-xl bg-white h-3/4 w-5/6 xl:w-2/3 flex flex-col items-center space-y-5 py-1 lg:py-5 px-8'>
                 <h1 className='text-xl font-semibold pb-12'>Form</h1>
                 <select onChange={onChange} name='id' className='w-full xl:w-3/4 outline-none border-b-[1px] border-black py-3'>
-                    <option disabled value=''>Select a Dealer</option>
+                    <option value=''>Select a Dealer</option>
                     {data.map(({ name, id }) => (
                         <option key={id} value={id}>
                             {name}
@@ -84,7 +88,7 @@ const Form = ({ data }) => {
                 }
                   {deck != '' ?
                 <select onChange={onChangeShuffle} name='option' className='w-full xl:w-3/4 outline-none border-b-[1px] border-black py-3'>
-                    <option disabled value=''>Select an Option</option>
+                    <option value=''>Select an Option</option>
                     <option value='shuffle'>
                         Shuffle
                     </option>
